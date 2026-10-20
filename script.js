@@ -1,8 +1,17 @@
-let userInput = 15;
+let userInput = 0;
+
+
+const Button = document.querySelector("#btn");
+Button.addEventListener("click", () => {
+    let userInput = prompt('How many squares per side? Please between 1 and 100');
+    createGrid(0);
+    createGrid(userInput);
+});
 
 
 function createGrid(squaresPerSide){ 
     const container = document.getElementById("main-container")
+    container.innerHTML = ''; 
 
     for (let i = 0 ; i < squaresPerSide * squaresPerSide ; i++) {
 
