@@ -8,6 +8,14 @@ Button.addEventListener("click", () => {
     createGrid(userInput);
 });
 
+function getRandomRGBColor(){
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
 
 function createGrid(squaresPerSide){ 
     const container = document.getElementById("main-container")
@@ -20,7 +28,18 @@ function createGrid(squaresPerSide){
         square.style.width = `calc(100% / ${squaresPerSide})`;
 
         square.addEventListener('mouseenter', () => {
-        square.classList.add('hovered');
+            square.classList.add('hovered');    
+        
+            let currentOpacity = parseFloat(square.style.opacity) || 0;
+
+            if(currentOpacity === 0){
+                square.style.backgroundColor = getRandomRGBColor();
+            }
+
+            if(currentOpacity < 1.0){
+                square.style.opacity = currentOpacity + 0.1;
+            }
+                       
         });
         container.appendChild(square);
 
